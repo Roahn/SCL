@@ -10,8 +10,26 @@ typedef struct node
 
 void DeleteFirst(PPNODE Head, PPNODE Tail )
 {
-   
+   if(*Head == NULL)
+   {
+       return;
+   }
+   else if(*Head == *Tail)
+   {
+       delete *Head;
+       *Head =NULL;
+       *Tail =NULL;
+       
+   }
+   else
+   {
+    *Head = (*Head)->next;
+    delete (*Tail)->next;
+    (*Tail)->next = *Head;
 
+   }
+    ;
+    
 
 }
 void DeleteLast(PPNODE Head, PPNODE Tail)
@@ -69,7 +87,7 @@ void Display(PNODE Head,PNODE Tail)
 {
     if(Head == NULL)
     {
-
+        cout<<"Empty LL Empty!!!\n";
         return;
     }
     
@@ -78,7 +96,7 @@ void Display(PNODE Head,PNODE Tail)
        cout<<Head->data<<"||-->";
        Head = Head->next;
     }while(Head!=Tail->next);
-    cout<<"\n";
+    cout<<"NULL \n";
    
 }
 int Count(PNODE Head)
@@ -162,7 +180,7 @@ int main()
        
        default:
             cout<<"Please Enter correct option\n";
-           break;
+          
        }
     }
     //ret =Count(first);
