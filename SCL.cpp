@@ -38,6 +38,7 @@ void InsertFirst(PPNODE Head , PPNODE Tail, int no)
         newn->next = *Head;
         *Head = newn;
         (*Tail)->next = *Head; 
+       
     }
     
 };
@@ -46,8 +47,22 @@ void InsertFirst(PPNODE Head , PPNODE Tail, int no)
 
 void InsertLast(PPNODE Head , PPNODE Tail, int no)
 {
-   
+   PNODE newn = new NODE;
+   newn->data = no;
+   newn->next = NULL;
 
+    if(*Head == NULL)
+    {
+        InsertFirst(Head,Tail,no);
+    }
+    else
+    {
+        newn->next= *Head;
+        (*Tail)->next = newn;
+        *Tail = (*Tail)->next;
+
+    }
+   
 }
 
 void Display(PNODE Head,PNODE Tail)
@@ -57,12 +72,12 @@ void Display(PNODE Head,PNODE Tail)
 
         return;
     }
-    PNODE last = Head;
+    
     do
     {
        cout<<Head->data<<"||-->";
        Head = Head->next;
-    }while(Head->next != last);
+    }while(Head!=Tail->next);
     cout<<"\n";
    
 }
