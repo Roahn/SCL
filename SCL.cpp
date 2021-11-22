@@ -8,50 +8,78 @@ typedef struct node
     struct node * next;
 }NODE ,* PNODE ,**PPNODE;
 
-void DeleteFirst(PPNODE Head )
+void DeleteFirst(PPNODE Head, PPNODE Tail )
 {
    
 
 
 }
-void DeleteLast(PPNODE Head)
+void DeleteLast(PPNODE Head, PPNODE Tail)
 {
   
 
 }
 
 
-void InsertFirst(PPNODE Head , int no)
+void InsertFirst(PPNODE Head , PPNODE Tail, int no)
 {
+    PNODE newn = new NODE;
+    newn->next = NULL;
+    newn->data = no;
+
+    if(*Head == NULL)
+    {
+        *Head = newn;
+        *Tail = newn;
+        newn->next = newn;
+    }
+    else
+    {
+        newn->next = *Head;
+        *Head = newn;
+        (*Tail)->next = *Head; 
+    }
     
 };
 
 
 
-void InsertLast(PPNODE Head , int no)
+void InsertLast(PPNODE Head , PPNODE Tail, int no)
 {
    
 
 }
 
-void Display(PNODE Head)
+void Display(PNODE Head,PNODE Tail)
 {
+    if(Head == NULL)
+    {
+
+        return;
+    }
+    PNODE last = Head;
+    do
+    {
+       cout<<Head->data<<"||-->";
+       Head = Head->next;
+    }while(Head->next != last);
+    cout<<"\n";
    
 }
 int Count(PNODE Head)
 {
   
-    
+    return 0;
 }
 
 
-void DeleteAtPos(PPNODE Head , int pos)
+void DeleteAtPos(PPNODE Head , PPNODE Tail, int pos)
 {
 
    
 
 }
-void InsertAtPos(PPNODE Head , int no ,int pos)
+void InsertAtPos(PPNODE Head , PPNODE Tail,int no ,int pos)
 {
    
 }
@@ -84,33 +112,33 @@ int main()
        case 1:
             cout<<"Enter number\n";
             cin>>no;
-           InsertFirst(&first , no);
+           InsertFirst(&first ,&last, no);
            break;
        case 2:
             cout<<"Enter number\n";
             cin>>no;
-           InsertLast(&first , no);
+           InsertLast(&first ,&last, no);
            break;
        case 3:
             cout<<"Enter number\n";
             cin>>no;
             cout<<"Enter Position\n";
             cin>>pos;
-            InsertAtPos(&first , no,pos);
+            InsertAtPos(&first ,&last, no,pos);
            break;
        case 4:
-           DeleteFirst(&first);
+           DeleteFirst(&first,&last);
            break;
        case 5:
-           DeleteLast(&first);
+           DeleteLast(&first,&last);
            break;
        case 6:
             cout<<"Enter Position\n";
             cin>>pos;
-           DeleteAtPos(&first,pos);
+           DeleteAtPos(&first,&last,pos);
            break;
         case 7:
-            Display(first);
+            Display(first,last);
            
            break;
        case 0:
